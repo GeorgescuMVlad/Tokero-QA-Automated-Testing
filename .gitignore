@@ -1,0 +1,23 @@
+# Ignore build output and VS junk
+bin/
+obj/
+.vs/
+TestResults/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Output files
+*.dll
+*.exe
+*.pdb
+*.log
+*.tmp
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db
