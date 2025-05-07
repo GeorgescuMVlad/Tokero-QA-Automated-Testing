@@ -1,52 +1,64 @@
-# Build and output directories
+# Build results
 bin/
 obj/
-publish/
-TestResults/
+*.dll
 
-# Playwright related files
-playwright/.cache/
-playwright-report/
-
-# User-specific files
-*.user
-*.env
-.vscode/
+# Rider project files
 .idea/
 
-# Dependencies
-node_modules/
-packages/
-*.nupkg
-*.snupkg
-
-# System files
-.DS_Store
-Thumbs.db
-
-# Visual Studio specific files
-.vs/
+# Visual Studio user-specific files
+.vscode/
+*.user
 *.suo
-*.pdb
-*.dll
-*.exe
-*.cache
-*.log
+*.userosscache
+*.sln.docstates
 
-# Solution and project files
-*.sln
-*.vcxproj*
-*.csproj.user
-project.lock.json
-
-# NUnit test results
+# Test results
 TestResults/
-Reports/
-screenshots/
-
-# Other unwanted files
-coverage/
+*.trx
 *.coverage
 *.coveragexml
-*.json
-*.txt
+
+# NUnit test output (if using output files)
+nunit-*.xml
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# DotCover
+*.dotCover
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+~$*
+
+# Build artifacts
+*.dll
+*.exe
+*.pdb
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Optional: VS Code settings
+.vscode/
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
