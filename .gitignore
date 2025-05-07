@@ -2,7 +2,11 @@
 bin/
 obj/
 .vs/
+
+# NUnit test results
 TestResults/
+Reports/
+screenshots/
 
 # User-specific files
 *.user

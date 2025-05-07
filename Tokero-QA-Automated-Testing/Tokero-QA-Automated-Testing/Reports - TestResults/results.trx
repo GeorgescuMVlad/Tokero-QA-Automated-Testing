@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="151f3b0b-a3a9-4f45-b025-14607ed3dae0" name="vladg@VLADGEO 2025-05-07 16:10:06" runUser="VLADGEO\vladg" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-05-07T16:10:06.3899942+03:00" queuing="2025-05-07T16:10:06.3899948+03:00" start="2025-05-07T16:09:50.7087970+03:00" finish="2025-05-07T16:13:28.1902594+03:00" />
+  <TestSettings name="default" id="ed99974b-ad72-44f9-8dc7-4ebeadf1e5dd">
+    <Deployment runDeploymentRoot="vladg_VLADGEO_2025-05-07_16_10_06" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="4dcc98b1-e8d5-4034-9317-81753ddeb87f" testId="481849d7-efd6-03dc-c494-03642e05be99" testName="ValidatePolicyPages_MultiBrowser" computerName="VLADGEO" duration="00:01:56.9793020" startTime="2025-05-07T16:10:29.2258144+03:00" endTime="2025-05-07T16:12:26.2051154+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4dcc98b1-e8d5-4034-9317-81753ddeb87f" />
+    <UnitTestResult executionId="630b8a7d-84a8-4228-ba37-31ae07ce93c4" testId="9bf05642-537d-5ec9-9fbb-2c8e06dd75c9" testName="ValidatePolicyPages_MultiLanguage" computerName="VLADGEO" duration="00:01:01.5078990" startTime="2025-05-07T16:12:26.2051823+03:00" endTime="2025-05-07T16:13:27.7130799+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="630b8a7d-84a8-4228-ba37-31ae07ce93c4" />
+    <UnitTestResult executionId="4dc686aa-0d76-467b-8b1c-9f2afd6042e6" testId="51634e1d-5260-9f5b-479b-6ce09547948a" testName="MeasurePolicyPageLoadTime" computerName="VLADGEO" duration="00:00:11.5080410" startTime="2025-05-07T16:09:54.7150075+03:00" endTime="2025-05-07T16:10:06.2228906+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4dc686aa-0d76-467b-8b1c-9f2afd6042e6" />
+    <UnitTestResult executionId="16d45a29-c437-4821-8da9-9a80ae07e5a6" testId="f6538491-b766-431c-d687-e7d0cb6596f0" testName="ValidatePolicyPages" computerName="VLADGEO" duration="00:00:22.9996370" startTime="2025-05-07T16:10:06.2260958+03:00" endTime="2025-05-07T16:10:29.2257320+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16d45a29-c437-4821-8da9-9a80ae07e5a6" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="MeasurePolicyPageLoadTime" storage="d:\scoala\c# workspace\tokero-qa-automated-testing\tokero-qa-automated-testing\tokero-qa-automated-testing\bin\debug\net8.0\tokero-qa-automated-testing.dll" id="51634e1d-5260-9f5b-479b-6ce09547948a">
+      <Execution id="4dc686aa-0d76-467b-8b1c-9f2afd6042e6" />
+      <TestMethod codeBase="D:\Scoala\C# Workspace\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\bin\Debug\net8.0\Tokero-QA-Automated-Testing.dll" adapterTypeName="executor://nunit3testexecutor/" className="Tokero_QA_Automated_Testing.FunctionalTests.PolicyPageTests" name="MeasurePolicyPageLoadTime" />
+    </UnitTest>
+    <UnitTest name="ValidatePolicyPages_MultiBrowser" storage="d:\scoala\c# workspace\tokero-qa-automated-testing\tokero-qa-automated-testing\tokero-qa-automated-testing\bin\debug\net8.0\tokero-qa-automated-testing.dll" id="481849d7-efd6-03dc-c494-03642e05be99">
+      <Execution id="4dcc98b1-e8d5-4034-9317-81753ddeb87f" />
+      <TestMethod codeBase="D:\Scoala\C# Workspace\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\bin\Debug\net8.0\Tokero-QA-Automated-Testing.dll" adapterTypeName="executor://nunit3testexecutor/" className="Tokero_QA_Automated_Testing.FunctionalTests.PolicyPageTests" name="ValidatePolicyPages_MultiBrowser" />
+    </UnitTest>
+    <UnitTest name="ValidatePolicyPages" storage="d:\scoala\c# workspace\tokero-qa-automated-testing\tokero-qa-automated-testing\tokero-qa-automated-testing\bin\debug\net8.0\tokero-qa-automated-testing.dll" id="f6538491-b766-431c-d687-e7d0cb6596f0">
+      <Execution id="16d45a29-c437-4821-8da9-9a80ae07e5a6" />
+      <TestMethod codeBase="D:\Scoala\C# Workspace\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\bin\Debug\net8.0\Tokero-QA-Automated-Testing.dll" adapterTypeName="executor://nunit3testexecutor/" className="Tokero_QA_Automated_Testing.FunctionalTests.PolicyPageTests" name="ValidatePolicyPages" />
+    </UnitTest>
+    <UnitTest name="ValidatePolicyPages_MultiLanguage" storage="d:\scoala\c# workspace\tokero-qa-automated-testing\tokero-qa-automated-testing\tokero-qa-automated-testing\bin\debug\net8.0\tokero-qa-automated-testing.dll" id="9bf05642-537d-5ec9-9fbb-2c8e06dd75c9">
+      <Execution id="630b8a7d-84a8-4228-ba37-31ae07ce93c4" />
+      <TestMethod codeBase="D:\Scoala\C# Workspace\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\bin\Debug\net8.0\Tokero-QA-Automated-Testing.dll" adapterTypeName="executor://nunit3testexecutor/" className="Tokero_QA_Automated_Testing.FunctionalTests.PolicyPageTests" name="ValidatePolicyPages_MultiLanguage" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="481849d7-efd6-03dc-c494-03642e05be99" executionId="4dcc98b1-e8d5-4034-9317-81753ddeb87f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9bf05642-537d-5ec9-9fbb-2c8e06dd75c9" executionId="630b8a7d-84a8-4228-ba37-31ae07ce93c4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="51634e1d-5260-9f5b-479b-6ce09547948a" executionId="4dc686aa-0d76-467b-8b1c-9f2afd6042e6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f6538491-b766-431c-d687-e7d0cb6596f0" executionId="16d45a29-c437-4821-8da9-9a80ae07e5a6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="4" executed="4" passed="4" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.5.0.0: Test execution started&#xD;
+Running all tests in D:\Scoala\C# Workspace\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\Tokero-QA-Automated-Testing\bin\Debug\net8.0\Tokero-QA-Automated-Testing.dll&#xD;
+   NUnit3TestExecutor discovered 4 of 4 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+NUnit Adapter 4.5.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
