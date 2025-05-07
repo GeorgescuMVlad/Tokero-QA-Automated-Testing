@@ -7,11 +7,12 @@ obj/
 .idea/
 
 # Visual Studio user-specific files
-.vscode/
+.vs/
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
+*.cache
 
 # Test results
 TestResults/
