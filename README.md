@@ -1,5 +1,5 @@
 # Tokero-QA-Automated-Testing
-Automated testing sample with Playwright and C# on: https://tokero.dev/en/
+Automated testing sample with **Playwright** and **C#** on: https://tokero.dev/en/
 
 This repository contains automated integration tests for the [Tokero staging environment](https://tokero.dev/en/), built using **Playwright with .NET**. The goal is to validate key website flows, including multilingual support, policy page accessibility, and cross-browser compatibility.
 
