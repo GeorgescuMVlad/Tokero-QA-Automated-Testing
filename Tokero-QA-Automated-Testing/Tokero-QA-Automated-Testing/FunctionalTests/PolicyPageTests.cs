@@ -42,7 +42,10 @@ namespace Tokero_QA_Automated_Testing.FunctionalTests
             {
                 await _page.EvaluateAsync(@"document.querySelector('div.modal_modalOverlay__pCvXk')?.remove()");
                 await _page.WaitForTimeoutAsync(500);
-                if (!await _page.IsVisibleAsync("div.modal_modalOverlay__pCvXk")) break;
+                if (!await _page.IsVisibleAsync("div.modal_modalOverlay__pCvXk"))
+                {
+                    break;
+                }
             }
 
             // Accept cookie popup if it appears
@@ -69,7 +72,10 @@ namespace Tokero_QA_Automated_Testing.FunctionalTests
                 if (!string.IsNullOrEmpty(href) && !href.EndsWith("/policies/"))
                 {
                     var fullUrl = href.StartsWith("http") ? href : $"https://tokero.dev{href}";
-                    if (seen.Add(fullUrl)) hrefs.Add(fullUrl);
+                    if (seen.Add(fullUrl))
+                    {
+                        hrefs.Add(fullUrl);
+                    }
                 }
             }
 
@@ -99,7 +105,7 @@ namespace Tokero_QA_Automated_Testing.FunctionalTests
 
                 await LocalizationHelper.SwitchLanguageAsync(_page, lang);
 
-                await ValidatePolicyPages(); // Reuse your passing version
+                await ValidatePolicyPages();
             }
         }
 

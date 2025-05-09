@@ -5,8 +5,8 @@ This repository contains automated integration tests for the [Tokero staging env
 
 ## Tech Stack
 
-- **Language**: C# (.NET 6)
-- **Framework**: Playwright
+- **Language**: C#
+- **Framework**: Playwright with .NET - NUnit Test Project (.NET Core) (Target framework: .NET 8.0)
 - **Browsers Tested**: Chromium, Firefox, WebKit
 
 ## Test Coverage
@@ -17,13 +17,13 @@ This repository contains automated integration tests for the [Tokero staging env
 
 ### 2. Language Switching
 - Tests the language selector.
-- Verifies content updates accordingly for all supported languages (`/en`, `/fr`, `/de`.).
+- Verifies content updates accordingly for all supported languages (`/en`, `/fr`, `/de`).
 
 ### 3. Cross-Browser Testing
 - Executes all tests across Chromium, Firefox, and WebKit to ensure consistent behavior.
 
 ### 4. Load Performance Measurement
-- Measures page load times for each policy page, ensuring they load within acceptable performance thresholds (e.g., under 3 seconds).
+- Measures page load times for each policy page, ensuring they load within acceptable performance thresholds (under 3 seconds).
 
 ## Notes
 

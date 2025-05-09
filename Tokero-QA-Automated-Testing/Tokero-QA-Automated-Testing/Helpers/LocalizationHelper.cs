@@ -9,7 +9,10 @@ namespace Tokero_QA_Automated_Testing.Helpers
         {
             // Only switch if we're not already in the target language
             var currentUrl = page.Url;
-            if (currentUrl.Contains($"/{languageCode}/")) return;
+            if (currentUrl.Contains($"/{languageCode}/"))
+            {
+                return; 
+            }
 
             // Open the language dropdown
             await page.ClickAsync("div[class*='LanguageDropdown']"); // Adjust this selector if needed
