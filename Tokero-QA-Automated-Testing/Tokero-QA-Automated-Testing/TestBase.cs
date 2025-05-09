@@ -10,6 +10,7 @@ namespace Tokero_QA_Automated_Testing
         protected IPlaywright _playwright;
         protected IBrowser _browser;
         protected IPage _page;
+        protected IBrowserContext _context;
 
         [SetUp]
         public async Task SetupAsync()
@@ -17,13 +18,15 @@ namespace Tokero_QA_Automated_Testing
             _playwright = await Playwright.CreateAsync();
             _browser = await PlaywrightConfig.GetBrowserAsync(_playwright);
             _page = await _browser.NewPageAsync();
+            _context = await _browser.NewContextAsync();
         }
 
         [TearDown]
         public async Task TearDownAsync()
         {
-            await _browser.CloseAsync();
-            _playwright.Dispose();
+            if (_context != null) await _context.CloseAsync();
+            if (_browser != null) await _browser.CloseAsync();
+            _playwright?.Dispose();
         }
 
         protected async Task<IBrowser> GetBrowserInstance(string browserType)

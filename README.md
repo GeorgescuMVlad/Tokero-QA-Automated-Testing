@@ -17,14 +17,17 @@ This repository contains automated integration tests for the [Tokero staging env
 
 ### 2. Language Switching
 - Tests the language selector.
-- Verifies content updates accordingly for all supported languages (`/en`, `/ro`, etc.).
+- Verifies content updates accordingly for all supported languages (`/en`, `/fr`, `/de`.).
 
 ### 3. Cross-Browser Testing
 - Executes all tests across Chromium, Firefox, and WebKit to ensure consistent behavior.
 
+### 4. Load Performance Measurement
+- Measures page load times for each policy page, ensuring they load within acceptable performance thresholds (e.g., under 3 seconds).
+
 ## Notes
 
 - Authentication flows were skipped due to reCAPTCHA restrictions.
-- Performance testing was deprioritized in favor of functional coverage and fast delivery.
-- The test suite prioritizes simplicity and clarity over full-blown architecture.
+- Performance testing was included, with page load times measured to ensure policy pages load within acceptable thresholds.
+- The test suite prioritizes functional coverage, cross-browser compatibility, and multi-language validation over complex architecture or advanced features.
 

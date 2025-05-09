@@ -1,6 +1,7 @@
 ﻿using Microsoft.Playwright;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Tokero_QA_Automated_Testing.Helpers;
 
@@ -12,15 +13,21 @@ namespace Tokero_QA_Automated_Testing.FunctionalTests
         public async Task MeasurePolicyPageLoadTime()
         {
             await _page.GotoAsync("https://tokero.dev/en/");
-            var links = await _page.QuerySelectorAllAsync("a.policy-link");
 
-            foreach (var link in links)
+            // Grab hrefs safely before navigating
+            var hrefs = await _page.EvalOnSelectorAllAsync<string[]>(
+                "a[href*='/policies/']",
+                "els => els.map(el => el.href).filter(href => !href.endsWith('/policies/'))"
+            );
+
+            foreach (var href in hrefs)
             {
-                var href = await link.GetAttributeAsync("href");
+                var stopwatch = Stopwatch.StartNew();
                 var response = await _page.GotoAsync(href);
-                Assert.IsTrue(response.Status == 200, $"Page {href} did not load successfully.");
+                stopwatch.Stop();
 
-                var loadTime = await _page.EvaluateAsync("performance.timing.loadEventEnd - performance.timing.navigationStart");
+                Assert.That(response.Status, Is.EqualTo(200), $"Page {href} did not load successfully.");
+                Assert.That(stopwatch.ElapsedMilliseconds, Is.LessThan(3000), $"Page {href} loaded too slowly ({stopwatch.ElapsedMilliseconds}ms).");
             }
         }
 
@@ -28,53 +35,56 @@ namespace Tokero_QA_Automated_Testing.FunctionalTests
         public async Task ValidatePolicyPages()
         {
             await _page.GotoAsync("https://tokero.dev/en/");
+            await _page.WaitForLoadStateAsync(LoadState.NetworkIdle);
 
-            // Remove modal overlay completely
-            await _page.EvaluateAsync(@"
-            let modal = document.querySelector('div.modal_modalOverlay__pCvXk');
-            if (modal) 
+            // Attempt to remove the modal overlay (with retry)
+            for (int i = 0; i < 3; i++)
             {
-                modal.style.display = 'none';
-                modal.style.pointerEvents = 'none';
-                modal.remove();
-            }");
-
-            // Accept cookie popup if visible
-            if (await _page.IsVisibleAsync("div.cookieConsentPopup_container__3"))
-            {
-                await _page.ClickAsync("button:has-text('Accept')");
-                await _page.WaitForTimeoutAsync(1000); // let the DOM settle
+                await _page.EvaluateAsync(@"document.querySelector('div.modal_modalOverlay__pCvXk')?.remove()");
+                await _page.WaitForTimeoutAsync(500);
+                if (!await _page.IsVisibleAsync("div.modal_modalOverlay__pCvXk")) break;
             }
 
-            // Wait for and click the Privacy Policy link
-            await _page.WaitForSelectorAsync("a[title='Privacy policy']", new PageWaitForSelectorOptions { Timeout = 60000 });
-            await _page.ClickAsync("a[title='Privacy policy']");
+            // Accept cookie popup if it appears
+            if (await _page.Locator("div.cookieConsentPopup_container__3").IsVisibleAsync())
+            {
+                await _page.ClickAsync("button:has-text('Accept')");
+                await _page.WaitForTimeoutAsync(500);
+            }
 
-            // Get all unique policy hrefs BEFORE navigating
+            // Scroll and click on the Privacy Policy link
+            var privacyLink = _page.Locator("a[title='Privacy policy']");
+            await privacyLink.ScrollIntoViewIfNeededAsync();
+            await privacyLink.ClickAsync();
+            await _page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+
+            // Gather unique policy links
             var links = await _page.QuerySelectorAllAsync("footer a[href*='/policies/']");
             var hrefs = new List<string>();
-            var visited = new HashSet<string>();
+            var seen = new HashSet<string>();
 
             foreach (var link in links)
             {
                 var href = await link.GetAttributeAsync("href");
                 if (!string.IsNullOrEmpty(href) && !href.EndsWith("/policies/"))
                 {
-                    var absoluteUrl = $"https://tokero.dev{href}";
-                    if (visited.Add(absoluteUrl)) hrefs.Add(absoluteUrl);
+                    var fullUrl = href.StartsWith("http") ? href : $"https://tokero.dev{href}";
+                    if (seen.Add(fullUrl)) hrefs.Add(fullUrl);
                 }
             }
 
-            // Navigate to each policy URL and verify it loaded
+            // Visit and verify each policy page
             foreach (var url in hrefs)
             {
-                await _page.GotoAsync(url);
-                await _page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+                var response = await _page.GotoAsync(url);
+                Assert.That(response.Ok, $"Policy page failed to load: {url}");
 
-                var isVisible = await _page.IsVisibleAsync("h1, h2, .policy-title, .policy-container, .title-text, .custom-header, .section-title, .htmlComponent_editorClass__t, .htmlComponent_bodyClass__r");
-                var body = await _page.InnerHTMLAsync("body");
+                await _page.WaitForTimeoutAsync(1000); // let dynamic content load
 
-                Assert.IsTrue(isVisible || body.Length > 1000, $"Policy page {url} failed to load or had no recognizable content.");
+                var contentFound = await _page.Locator("main, article, .policy-container, .htmlComponent_bodyClass__r").IsVisibleAsync();
+                var fallbackBodyLength = (await _page.InnerTextAsync("body")).Trim().Length;
+
+                Assert.IsTrue(contentFound || fallbackBodyLength > 300, $"Policy page {url} seems empty or broken.");
             }
         }
 
@@ -100,8 +110,11 @@ namespace Tokero_QA_Automated_Testing.FunctionalTests
 
             foreach (var browser in browsers)
             {
+                await _context.CloseAsync(); // Cleanup before browser switch
                 _browser = await GetBrowserInstance(browser);
-                _page = await _browser.NewPageAsync();
+                _context = await _browser.NewContextAsync();
+                _page = await _context.NewPageAsync();
+
                 await ValidatePolicyPages();
             }
         }        
