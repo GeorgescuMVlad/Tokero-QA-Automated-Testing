@@ -15,7 +15,7 @@ namespace Tokero_QA_Automated_Testing.Helpers
             }
 
             // Open the language dropdown
-            await page.ClickAsync("div[class*='LanguageDropdown']"); // Adjust this selector if needed
+            await page.ClickAsync("div[class~='dropdown']");
             await page.WaitForTimeoutAsync(500); // Let dropdown render
 
             // Click the appropriate language option

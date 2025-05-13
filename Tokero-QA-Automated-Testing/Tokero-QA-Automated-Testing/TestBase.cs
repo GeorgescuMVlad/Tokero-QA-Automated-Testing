@@ -17,13 +17,14 @@ namespace Tokero_QA_Automated_Testing
         {
             _playwright = await Playwright.CreateAsync();
             _browser = await PlaywrightConfig.GetBrowserAsync(_playwright);
-            _page = await _browser.NewPageAsync();
             _context = await _browser.NewContextAsync();
+            _page = await _browser.NewPageAsync();        
         }
 
         [TearDown]
         public async Task TearDownAsync()
         {
+            if (_page != null) await _page.CloseAsync();
             if (_context != null) await _context.CloseAsync();
             if (_browser != null) await _browser.CloseAsync();
             _playwright?.Dispose();
